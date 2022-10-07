@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CameraBehaviour : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class CameraBehaviour : MonoBehaviour
     /// Z distance from followed object
     /// </summary>
     public float distance = -10f;
+    /// <summary>
+    /// Follow step
+    /// </summary>
+    public float step = 1f;
 
     // Camera reference
     private Camera cam;
@@ -21,13 +26,15 @@ public class CameraBehaviour : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        // Change position based on 
         try
         {
-            cam.transform.position = new(follow.transform.position.x, follow.transform.position.y, distance);
+            // Calculate position
+            Vector2 pos = Vector2.MoveTowards(cam.transform.position, follow.transform.position, step);
+
+            // Move towards the follow object
+            cam.transform.position = new(pos.x, pos.y, distance);
         }
         catch
         {
