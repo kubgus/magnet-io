@@ -30,6 +30,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Change object's position
-        rb.MovePosition(rb.position + v * Time.fixedDeltaTime);
+        rb.velocity = v;
     }
 }

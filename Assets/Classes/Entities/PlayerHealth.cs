@@ -9,7 +9,9 @@ public class PlayerHealth : MonoBehaviour
     /// Starting health amount
     /// </summary>
     [Range(0f, 100f)]
-    public float health;
+    public float s;
+
+    public float sPerSecond;
     /// <summary>
     /// Minimum size of player
     /// </summary>
@@ -18,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
     /// Maximum size of player
     /// </summary>
     public float maxSize;
+
+
 
     // Player Transform reference
     private Transform ply;
@@ -34,10 +38,16 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //change s
+        s += Time.deltaTime * sPerSecond;
         // Get size
-        float size = health / 100 * (maxSize - minSize) + minSize;
+        float size = s / 100 * (maxSize - minSize) + minSize;
 
         // Set scale based on health
         ply.transform.localScale = new(Mathf.Clamp(size, minSize, maxSize), Mathf.Clamp(size, minSize, maxSize));
+
+
+
+
     }
 }

@@ -29,11 +29,13 @@ public class ElectronBehaviour : MonoBehaviour
     {
         foreach (Transform e in world.transform)
         {
-            // Calculate position
-            Vector2 pos = Vector2.MoveTowards(e.transform.position, transform.position, Mathf.Max(0, force * (distance - Vector2.Distance(e.transform.position, transform.position))));
+            //// Calculate position
+            //Vector2 pos = Vector2.MoveTowards(e.transform.position, transform.position, Mathf.Max(0, force * (distance - Vector2.Distance(e.transform.position, transform.position))));
 
-            // Move towards the follow object
-            e.transform.position = new(pos.x, pos.y);
+            //// Move towards the follow object
+            //e.transform.position = new(pos.x, pos.y);
+
+            e.GetComponent<Rigidbody2D>().velocity = (transform.position - e.position) * Mathf.Max(0, force * (distance - Vector2.Distance(e.transform.position, transform.position)));
         }
     }
 }

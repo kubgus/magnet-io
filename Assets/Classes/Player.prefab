@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3712448583540666249}
   - component: {fileID: 3712448583540666248}
   - component: {fileID: 3712448583540666251}
+  - component: {fileID: 3025650937849575331}
+  - component: {fileID: 5484447018582937621}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,9 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726420db5afcaca4eba201893980a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  s: 0
+  sPerSecond: 1
   minSize: 0.1
-  maxSize: 2
+  maxSize: 10
 --- !u!114 &3712448583540666251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,5 +152,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c39f0c2d89ed244b5674a0726ffe94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.02
-  distance: 9
+  force: 0.1
+  distance: 6
+--- !u!114 &3025650937849575331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712448583540666245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc17c46b493f644689f1c6aa90df329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &5484447018582937621
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712448583540666245}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
