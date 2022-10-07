@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         //change s
-        s += Time.deltaTime * sPerSecond;
+        //s += Time.deltaTime * sPerSecond;
         // Get size
         float size = s / 100 * (maxSize - minSize) + minSize;
 
