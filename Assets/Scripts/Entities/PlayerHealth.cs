@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     // Health
     [Range(0f, 100f)]
     public float s;
-
+    [SerializeField] GameObject basePrefab;
     [SerializeField] Collider2D pBase;
     [SerializeField] float minSize;
     [SerializeField] float maxSize;
@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         mode = GetComponent<AttractMode>();
+        pBase = Instantiate(basePrefab, transform.position, Quaternion.identity).GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
