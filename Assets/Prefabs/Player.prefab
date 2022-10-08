@@ -174,10 +174,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbb33552df7cc14abbd1b4c03dfbaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s: 20
-  sPerSecond: 2
-  minSize: 0.1
-  maxSize: 5
+  s: 100
+  home: {fileID: 0}
+  shrinkPerSecond: 10
+  growInBasePerSecond: 50
+  shrinkInEnemyBasePerSecond: 50
+  minSize: 0
+  maxSize: 1
+  baseSize: 0
 --- !u!114 &3438908502575452692
 MonoBehaviour:
   m_ObjectHideFlags: 0

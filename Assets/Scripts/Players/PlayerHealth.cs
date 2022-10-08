@@ -5,49 +5,79 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    /// <summary>
-    /// Starting health amount
-    /// </summary>
-    [Range(0f, 100f)]
     public float s;
 
-    public float sPerSecond;
-    /// <summary>
-    /// Minimum size of player
-    /// </summary>
-    public float minSize;
-    /// <summary>
-    /// Maximum size of player
-    /// </summary>
-    public float maxSize;
+    [SerializeField] Collider2D home;
+    bool atHome;
+    bool inEnemyBase;
 
+    [SerializeField] float shrinkPerSecond;
+    [SerializeField] float growInBasePerSecond;
+    [SerializeField] float shrinkInEnemyBasePerSecond;
+    [SerializeField] float minSize;
+    [SerializeField] float maxSize;
 
-
-    // Player Transform reference
-    private Transform ply;
+    public float baseSize;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Get Transform component of this object
-        ply = GetComponent<Transform>();
 
-        // Set private health to
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //change s
-        //s += Time.deltaTime * sPerSecond;
         // Get size
         float size = s / 100 * (maxSize - minSize) + minSize;
 
+        s = Mathf.Clamp(s, 0, 100);
+
         // Set scale based on health
-        ply.transform.localScale = new(Mathf.Clamp(size, minSize, maxSize), Mathf.Clamp(size, minSize, maxSize));
+        transform.localScale = new(Mathf.Clamp(size * baseSize, minSize * baseSize, maxSize * baseSize), Mathf.Clamp(size * baseSize, minSize * baseSize, maxSize * baseSize));
 
 
+        if (atHome)
+        {
+            s += Time.deltaTime * growInBasePerSecond / baseSize;
+        }
+        else if (inEnemyBase)
+        {
+            s -= Time.deltaTime * shrinkInEnemyBasePerSecond / baseSize;
+        }
+        else
+        {
+            s -= Time.deltaTime * shrinkPerSecond / baseSize;
+        }
+    }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Base"))
+        {
+            if (collision == home)
+            {
+                atHome = true;
+            }
+            else
+            {
+                inEnemyBase = true;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision == home)
+        {
+            if (collision == home)
+            {
+                atHome = false;
+            }
+            else
+            {
+                inEnemyBase = false;
+            }
+        }
     }
 }
