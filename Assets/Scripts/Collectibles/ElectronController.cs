@@ -11,6 +11,7 @@ public class ElectronController : MonoBehaviour
     /// Force that the object moves to the follow object
     /// </summary>
     public float force;
+    public float attractModeForce;
     /// <summary>
     /// Max distance
     /// </summary>
@@ -25,11 +26,14 @@ public class ElectronController : MonoBehaviour
     //
     private GameObject wld;
 
+    private AttractMode mode;
+
     // Start is called before the first frame update
     void Start()
     {
         ent = GameObject.Find("Entities");
         wld = GameObject.Find("World");
+        mode = ent.transform.Find("Player").GetComponent<AttractMode>();
     }
 
     // Update is called once per frame
@@ -47,7 +51,15 @@ public class ElectronController : MonoBehaviour
             //e.transform.position = new(pos.x, pos.y);
 
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            Vector2 f = (e.position - transform.position) * Mathf.Max(0, force * (distance - _distance));
+            Vector2 f = new Vector2();
+            if (mode.attractMode)
+            {
+                f = (e.position - transform.position) * Mathf.Max(0, attractModeForce * (distance - _distance));
+            }
+            else
+            {
+                f = (e.position - transform.position) * Mathf.Max(0, force * (distance - _distance));
+            }
             if (Random.Range(0,instability) == 0)
             {
                 rb.AddForce(f);
