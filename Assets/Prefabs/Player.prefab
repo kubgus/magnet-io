@@ -144,11 +144,11 @@ MonoBehaviour:
   - {fileID: 7636285786560419967, guid: 485e8da244343d54d92c46e9a165f9b2, type: 3}
   - {fileID: 7636285786560419967, guid: c57a8334b3ab19443ab52a31150dd9e9, type: 3}
   - {fileID: 7636285786560419967, guid: 72b0c20b45e34064cbc81dbba502b13c, type: 3}
-  x: 50
-  y: 30
+  x: 100
+  y: 100
   spawnRate: 1864
-  spawnAmount: 30
-  spawnLimit: 180
+  spawnAmount: 300
+  spawnLimit: 600
 --- !u!114 &5919486908062272718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59687d0905938e54180e927edd12a596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s: 0.3
+  s: 0.5
   v: 1
 --- !u!114 &3950964925171743427
 MonoBehaviour:

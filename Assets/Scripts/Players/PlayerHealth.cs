@@ -19,13 +19,12 @@ public class PlayerHealth : MonoBehaviour
 
     public float baseSize;
 
-    // Start is called before the first frame update
-    void Start()
+    AttractMode mode;
+
+    private void Start()
     {
-
-
+        mode = GetComponent<AttractMode>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -37,18 +36,22 @@ public class PlayerHealth : MonoBehaviour
         // Set scale based on health
         transform.localScale = new(Mathf.Clamp(size * baseSize, minSize * baseSize, maxSize * baseSize), Mathf.Clamp(size * baseSize, minSize * baseSize, maxSize * baseSize));
 
-
+        float modeMult = 1;
+        if(mode.attractMode == true)
+        {
+            modeMult = 6;
+        }
         if (atHome)
         {
-            s += Time.deltaTime * growInBasePerSecond / baseSize;
+            s += Time.deltaTime * growInBasePerSecond / baseSize / modeMult;
         }
         else if (inEnemyBase)
         {
-            s -= Time.deltaTime * shrinkInEnemyBasePerSecond / baseSize;
+            s -= Time.deltaTime * shrinkInEnemyBasePerSecond / baseSize * modeMult;
         }
         else
         {
-            s -= Time.deltaTime * shrinkPerSecond / baseSize;
+            s -= Time.deltaTime * shrinkPerSecond / baseSize * modeMult;
         }
     }
 

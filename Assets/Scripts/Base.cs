@@ -24,7 +24,7 @@ public class Base : MonoBehaviour
         if (other.gameObject.CompareTag("Electron"))
         {
             Destroy(other.gameObject);
-            level += 0.01f;
+            level += 0.02f;
         }
     }
 }
