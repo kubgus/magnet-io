@@ -45,9 +45,5 @@ public class PlayerHealth : MonoBehaviour
 
         // Set scale based on health
         ply.transform.localScale = new(Mathf.Clamp(size, minSize, maxSize), Mathf.Clamp(size, minSize, maxSize));
-
-
-
-
     }
 }
