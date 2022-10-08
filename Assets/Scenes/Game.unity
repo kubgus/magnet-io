@@ -489,10 +489,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1937124111}
     m_Modifications:
-    - target: {fileID: 731672413983754488, guid: d0985e47280089e4db718f730f21ca07, type: 3}
-      propertyPath: prefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3712448583540666245, guid: d0985e47280089e4db718f730f21ca07, type: 3}
       propertyPath: m_Name
       value: Player
