@@ -18,6 +18,7 @@ public class CameraBehaviour : MonoBehaviour
 
     // Camera reference
     private Camera cam;
+    [HideInInspector] public float trueDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,7 @@ public class CameraBehaviour : MonoBehaviour
             Vector2 pos = Vector2.MoveTowards(cam.transform.position, follow.transform.position, step);
 
             // Move towards the follow object
-            cam.transform.position = new(pos.x, pos.y, distance);
+            cam.transform.position = new(pos.x, pos.y, trueDistance);
         }
         catch
         {

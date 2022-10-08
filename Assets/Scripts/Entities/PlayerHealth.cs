@@ -21,13 +21,17 @@ public class PlayerHealth : MonoBehaviour
 
     AttractMode mode;
 
+    CameraBehaviour cameraBehaviour;
+
     private void Start()
     {
         mode = GetComponent<AttractMode>();
+        cameraBehaviour = FindObjectOfType<CameraBehaviour>();
     }
     // Update is called once per frame
     void Update()
     {
+        cameraBehaviour.trueDistance = cameraBehaviour.distance * maxSize;
         // Get size
         float size = s / 100 * (maxSize - minSize) + minSize;
 

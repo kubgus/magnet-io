@@ -52,7 +52,7 @@ public class ElectronController : MonoBehaviour
 
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             Vector2 f = new Vector2();
-            if (mode.attractMode)
+            if (e.gameObject == mode.gameObject && mode.attractMode)
             {
                 f = (e.position - transform.position) * Mathf.Max(0, attractModeForce * (distance - _distance));
             }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Base : MonoBehaviour
 {
     float level;
+    [SerializeField] float startSize = 5;
     [SerializeField] float smoothPerSecond;
     [SerializeField] PlayerHealth health;
 
@@ -16,7 +17,7 @@ public class Base : MonoBehaviour
     private void Update()
     {
         health.baseSize = level;
-        float trueScale = Mathf.Lerp(transform.localScale.x, level * 3, Time.deltaTime * smoothPerSecond);
+        float trueScale = Mathf.Lerp(transform.localScale.x, level * startSize, Time.deltaTime * smoothPerSecond);
         transform.localScale = new Vector2(trueScale, trueScale);
     }
     private void OnTriggerEnter2D(Collider2D other)
