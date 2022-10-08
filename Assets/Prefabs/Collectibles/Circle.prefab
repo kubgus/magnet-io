@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 492046445638186859}
   - component: {fileID: 1500052063138946048}
   - component: {fileID: 3956655749207248193}
+  - component: {fileID: 7734293299419711501}
+  - component: {fileID: 8545514432759432678}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -138,3 +140,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: 1
   v: 1
+--- !u!114 &7734293299419711501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7636285786560419967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09747b9fe0a43bd46b2bb1f0ddfb8052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 1.5
+  distance: 8
+  instability: 0
+--- !u!114 &8545514432759432678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7636285786560419967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb0ef5523b414942a7b152e1cac3fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxVelocity: 10

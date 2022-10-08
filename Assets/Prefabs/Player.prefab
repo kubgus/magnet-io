@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3712448583540666246}
   - component: {fileID: 5484447018582937621}
   - component: {fileID: 731672413983754488}
-  - component: {fileID: 2464858572237927355}
   - component: {fileID: 5919486908062272718}
   - component: {fileID: 7092973021606684223}
   - component: {fileID: 3438908502575452692}
@@ -142,27 +141,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 7636285786560419967, guid: 485e8da244343d54d92c46e9a165f9b2, type: 3}
-  - {fileID: 7636285786560419967, guid: 8ac9004e6f224874396c20e2f37df14f, type: 3}
-  - {fileID: 7636285786560419967, guid: a1abec3136bbaf64eb4183bbfa04869b, type: 3}
   x: 50
   y: 30
   spawnRate: 1864
   spawnAmount: 30
   spawnLimit: 180
---- !u!114 &2464858572237927355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3712448583540666245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09747b9fe0a43bd46b2bb1f0ddfb8052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 1.2
-  distance: 7.5
 --- !u!114 &5919486908062272718
 MonoBehaviour:
   m_ObjectHideFlags: 0
