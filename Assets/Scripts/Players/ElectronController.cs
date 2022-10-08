@@ -38,7 +38,7 @@ public class ElectronController : MonoBehaviour
             //// Move towards the follow object
             //e.transform.position = new(pos.x, pos.y);
 
-            e.GetComponent<Rigidbody2D>().velocity = (transform.position - e.position) * Mathf.Max(0, force * (distance - _distance));
+            e.GetComponent<Rigidbody2D>().AddForce((transform.position - e.position) * Mathf.Max(0, force * (distance - _distance)));
 
             
         }
