@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // Health
+    [Range(0f, 100f)]
     public float s;
 
-    [SerializeField] Collider2D home;
-    bool atHome;
-    bool inEnemyBase;
-
+    [SerializeField] Collider2D pBase;
+    [SerializeField] float minSize;
+    [SerializeField] float maxSize;
     [SerializeField] float shrinkPerSecond;
     [SerializeField] float growInBasePerSecond;
     [SerializeField] float shrinkInEnemyBasePerSecond;
-    [SerializeField] float minSize;
-    [SerializeField] float maxSize;
 
     public float baseSize;
 
@@ -28,6 +27,9 @@ public class PlayerHealth : MonoBehaviour
         mode = GetComponent<AttractMode>();
         cameraBehaviour = FindObjectOfType<CameraBehaviour>();
     }
+    bool inBase;
+    bool inEnemyBase;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,10 +37,8 @@ public class PlayerHealth : MonoBehaviour
         // Get size
         float size = s / 100 * (maxSize - minSize) + minSize;
 
-        s = Mathf.Clamp(s, 0, 100);
-
         // Set scale based on health
-        transform.localScale = new(Mathf.Clamp(size * baseSize, minSize * baseSize, maxSize * baseSize), Mathf.Clamp(size * baseSize, minSize * baseSize, maxSize * baseSize));
+        transform.localScale = new(Mathf.Clamp(size, minSize, maxSize), Mathf.Clamp(size, minSize, maxSize));
 
         float modeMult = 1;
         if(mode.attractMode == true)
@@ -56,6 +56,20 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             s -= Time.deltaTime * shrinkPerSecond / baseSize * modeMult;
+
+        if (inBase)
+        {
+            s += Time.deltaTime * growInBasePerSecond;
+            s = Mathf.Min(s, 100);
+        }
+        else if (inEnemyBase)
+        {
+            s -= Time.deltaTime * shrinkInEnemyBasePerSecond;
+        }
+        else
+        {
+            s -= Time.deltaTime * shrinkPerSecond;
+            s = Mathf.Max(s, 0);
         }
     }
 
@@ -63,9 +77,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Base"))
         {
-            if (collision == home)
+            if (collision == pBase)
             {
-                atHome = true;
+                inBase = true;
             }
             else
             {
@@ -75,11 +89,11 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision == home)
+        if (collision == pBase)
         {
-            if (collision == home)
+            if (collision == pBase)
             {
-                atHome = false;
+                inBase = false;
             }
             else
             {

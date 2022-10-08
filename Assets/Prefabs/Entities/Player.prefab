@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  speed: 13
 --- !u!114 &7092973021606684223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,13 +176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   s: 100
-  home: {fileID: 0}
-  shrinkPerSecond: 10
+  pBase: {fileID: 0}
+  minSize: 0.1
+  maxSize: 4
+  shrinkPerSecond: 3
   growInBasePerSecond: 50
   shrinkInEnemyBasePerSecond: 50
-  minSize: 0
-  maxSize: 1
-  baseSize: 0
 --- !u!114 &3438908502575452692
 MonoBehaviour:
   m_ObjectHideFlags: 0
