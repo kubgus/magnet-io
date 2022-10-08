@@ -13,67 +13,47 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float minSize;
     [SerializeField] float maxSize;
     [SerializeField] float shrinkPerSecond;
-    [SerializeField] float growInBasePerSecond;
+    [SerializeField] float shrinkWithAttractMode;
     [SerializeField] float shrinkInEnemyBasePerSecond;
+    [SerializeField] float growInBasePerSecond;
 
-    public float baseSize;
+    bool inBase;
+    bool inEnemyBase;
 
     AttractMode mode;
-
-    CameraBehaviour cameraBehaviour;
 
     private void Start()
     {
         mode = GetComponent<AttractMode>();
-        cameraBehaviour = FindObjectOfType<CameraBehaviour>();
     }
-    bool inBase;
-    bool inEnemyBase;
 
     // Update is called once per frame
     void Update()
     {
-        cameraBehaviour.trueDistance = cameraBehaviour.distance * maxSize;
         // Get size
         float size = s / 100 * (maxSize - minSize) + minSize;
 
         // Set scale based on health
         transform.localScale = new(Mathf.Clamp(size, minSize, maxSize), Mathf.Clamp(size, minSize, maxSize));
 
-        float modeMult = 1;
-        if(mode.attractMode == true)
-        {
-            modeMult = 6;
-        }
-        if (atHome)
-        {
-            s += Time.deltaTime * growInBasePerSecond / baseSize / modeMult;
-        }
-        else if (inEnemyBase)
-        {
-            s -= Time.deltaTime * shrinkInEnemyBasePerSecond / baseSize * modeMult;
-        }
-        else
-        {
-            s -= Time.deltaTime * shrinkPerSecond / baseSize * modeMult;
-
         if (inBase)
         {
-            s += Time.deltaTime * growInBasePerSecond;
+            s += Time.deltaTime * growInBasePerSecond * GetShrinkSpeed();
             s = Mathf.Min(s, 100);
         }
         else if (inEnemyBase)
         {
-            s -= Time.deltaTime * shrinkInEnemyBasePerSecond;
+            s -= Time.deltaTime * shrinkInEnemyBasePerSecond * GetShrinkSpeed();
+            s = Mathf.Max(s, 0);
         }
         else
         {
-            s -= Time.deltaTime * shrinkPerSecond;
+            s -= Time.deltaTime * shrinkPerSecond * GetShrinkSpeed();
             s = Mathf.Max(s, 0);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Base"))
         {
@@ -87,7 +67,8 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision == pBase)
         {
@@ -100,5 +81,15 @@ public class PlayerHealth : MonoBehaviour
                 inEnemyBase = false;
             }
         }
+    }
+
+    // Determine shrink speed with attracc mode
+    float GetShrinkSpeed()
+    {
+        if (mode.attractMode)
+        {
+            return shrinkWithAttractMode;
+        }
+        return 1;
     }
 }

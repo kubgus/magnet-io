@@ -162,7 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  speed: 13
 --- !u!114 &7092973021606684223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,10 +177,11 @@ MonoBehaviour:
   s: 100
   pBase: {fileID: 0}
   minSize: 0.1
-  maxSize: 4
-  shrinkPerSecond: 3
-  growInBasePerSecond: 50
+  maxSize: 3
+  shrinkPerSecond: 2
+  shrinkWithAttractMode: 6
   shrinkInEnemyBasePerSecond: 50
+  growInBasePerSecond: 50
 --- !u!114 &3438908502575452692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59687d0905938e54180e927edd12a596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s: 0.75
+  s: 0.5
   v: 1
 --- !u!114 &3950964925171743427
 MonoBehaviour:

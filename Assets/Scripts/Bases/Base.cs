@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    float level;
-    [SerializeField] float startSize = 5;
+    [SerializeField] float startSize = 5f;
     [SerializeField] float smoothPerSecond;
     [SerializeField] float electronBonus;
 
@@ -13,14 +12,12 @@ public class Base : MonoBehaviour
 
     private void Start()
     {
-        level = 5;
+        level = 0;
     }
 
     private void Update()
     {
-        health.baseSize = level;
-        float trueScale = Mathf.Lerp(transform.localScale.x, level * startSize, Time.deltaTime * smoothPerSecond);
-        float trueScale = Mathf.Lerp(transform.localScale.x, level * 3, Time.deltaTime * smoothPerSecond);
+        float trueScale = Mathf.Lerp(transform.localScale.x, level + startSize, Time.deltaTime * smoothPerSecond);
         transform.localScale = new Vector2(trueScale, trueScale);
     }
 
@@ -29,7 +26,6 @@ public class Base : MonoBehaviour
         if (other.gameObject.CompareTag("Electron"))
         {
             Destroy(other.gameObject);
-            level += 0.02f;
             level += electronBonus;
         }
     }
