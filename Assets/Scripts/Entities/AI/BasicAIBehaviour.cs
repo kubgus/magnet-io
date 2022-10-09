@@ -39,14 +39,11 @@ public class BasicAIBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (health != null)
+        try
         {
             baseDist = Vector2.Distance(transform.position, health.pBase.transform.position);
-        }
-        else
-        {
-            baseDist = 0;
-        }
+        } catch { baseDist = 0; }
+
 
         if (GetComponent<PlayerHealth>().inEnemyBase)
         {

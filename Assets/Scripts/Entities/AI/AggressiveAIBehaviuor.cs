@@ -35,7 +35,11 @@ public class AggressiveAIBehaviuor : MonoBehaviour
 
     private void Update()
     {
-        baseDist = Vector2.Distance(transform.position, health.pBase.transform.position);
+        try
+        {
+            baseDist = Vector2.Distance(transform.position, health.pBase.transform.position);
+        }
+        catch { baseDist = 0; }
 
         if (GetComponent<PlayerHealth>().inEnemyBase)
         {
