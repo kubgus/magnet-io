@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -21,28 +22,44 @@ public class ElectronController : MonoBehaviour
     /// </summary>
     public float instability;
 
-    //
-    private GameObject ent;
-    //
-    private GameObject wld;
-
-    private AttractMode mode;
+    [SerializeField] List<GameObject> nearbyPlayers;
 
     // Start is called before the first frame update
     void Start()
     {
-        ent = GameObject.Find("Entities");
-        wld = GameObject.Find("World");
-        mode = ent.transform.Find("Player").GetComponent<AttractMode>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!nearbyPlayers.Contains(other.gameObject) && other.gameObject.CompareTag("Player"))
+        {
+            nearbyPlayers.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (nearbyPlayers.Contains(other.gameObject) && other.gameObject.CompareTag("Player"))
+        {
+            nearbyPlayers.Remove(other.gameObject);
+        }
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        foreach (Transform e in ent.transform)
+        foreach (GameObject c in nearbyPlayers)
         {
+            Transform e = null;
+            if (c != null)
+            {
+                e = c.transform;
+            }
+
             // Calculated distance between electron and object
             float _distance = Vector2.Distance(transform.position, e.transform.position);
+
+            AttractMode mode = e.gameObject.GetComponent<AttractMode>();
 
             //// Calculate position
             //Vector2 pos = Vector2.MoveTowards(e.transform.position, transform.position, Mathf.Max(0, force * (distance - Vector2.Distance(e.transform.position, transform.position))));
@@ -52,14 +69,26 @@ public class ElectronController : MonoBehaviour
 
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             Vector2 f = new Vector2();
-            if (e.gameObject == mode.gameObject && mode.attractMode)
+            // =========================================================================================
+            // This is extremly poorly written but I found no other way
+            try
             {
-                f = (e.position - transform.position) * Mathf.Max(0, attractModeForce * (distance - _distance));
+                if (e.gameObject == mode.gameObject && mode.attractMode)
+                {
+                    f = (e.position - transform.position) * Mathf.Max(0, attractModeForce * (distance - _distance));
+                }
+                else
+                {
+                    f = (e.position - transform.position) * Mathf.Max(0, force * (distance - _distance));
+                }
             }
-            else
+            catch
             {
                 f = (e.position - transform.position) * Mathf.Max(0, force * (distance - _distance));
             }
+            // Please forgive me, God
+            // =========================================================================================
+
             if (Random.Range(0,instability) == 0)
             {
                 rb.AddForce(f);

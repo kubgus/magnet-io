@@ -1,74 +1,85 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class BasicEnemybehaviour : MonoBehaviour
+public class BasicEnemyAI : MonoBehaviour
 {
-    [SerializeField] float maxWanderRadius;
-    List<Transform> targets = new List<Transform>();
-    [SerializeField] Transform currentTarget;
-    [SerializeField] Transform randomSpot;
     [SerializeField] float minRisk;
     [SerializeField] float maxRisk;
-    [SerializeField] float minAnger;
-    [SerializeField] float maxAnger;
+    [SerializeField] float safespace = 5f;
+
+    [SerializeField] Transform currentTarget;
 
     float risk;
-    float anger;
-    bool inBase;
+
+    float moveSpeed;
+    float moveDir;
 
     Rigidbody2D rb;
+    GameObject wld;
+    PlayerHealth health;
 
     private void Start()
     {
-        randomSpot = new GameObject().transform;
-        rb = GetComponent<Rigidbody2D>();
         risk = Random.Range(minRisk, maxRisk);
-        anger = Random.Range(minAnger, maxAnger);
-        ChooseNewTarget();
+        
+        moveSpeed = FindObjectOfType<PlayerController>().speed;
+
+        rb = GetComponent<Rigidbody2D>();
+        wld = GameObject.Find("World");
+        health = GetComponent<PlayerHealth>();
+
+        currentTarget = ChooseNewTarget();
     }
 
     private void Update()
     {
-        float speed = FindObjectOfType<PlayerController>().speed;
-        if(currentTarget == null)
+        if (health.s < risk || Random.Range(0,risk) == 0)
         {
-            ChooseNewTarget();
+            currentTarget = health.pBase.transform;
         }
-        rb.AddForce(currentTarget.position - transform.position * speed);
+        
+        if (currentTarget == null)
+        {
+            currentTarget = ChooseNewTarget();
+            MoveRandomSpot();
+        }
+        else
+        {
+            MoveTowardsTarget();
+        }
+    }
+
+    Transform ChooseNewTarget()
+    {
+        foreach (Transform e in wld.transform.GetChild(Random.Range(0,wld.transform.childCount)))
+        {
+            if (Vector2.Distance(e.position, transform.position) > safespace * 1.5f) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    void MoveTowardsTarget()
+    {
+        rb.velocity = -0.7f * moveSpeed * (transform.position - currentTarget.position).normalized;
+        if (Vector2.Distance(currentTarget.position, transform.position) < safespace)
+        {
+            currentTarget = ChooseNewTarget();
+        }
     }
 
     void MoveRandomSpot()
     {
-        randomSpot.position = transform.position + new Vector3(Random.Range(-maxWanderRadius, maxWanderRadius), Random.Range(-maxWanderRadius, maxWanderRadius),0);
-    }
-
-    void ChooseNewTarget()
-    {
-        if (targets.Count <= 0)
+        if (Random.Range(0,400) == 0)
         {
-            targets.Add(randomSpot);
-            MoveRandomSpot();
+            moveDir = Random.Range(0f, 6.28f);
         }
-        currentTarget = targets[0];
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Electron"))
-        {
-            targets.Add(other.transform);
-        }
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.transform == currentTarget)
-        {
-            currentTarget = transform;
-            targets.Remove(other.transform);
-            Invoke("ChooseNewTarget", Random.Range(0.1f, 2.5f));
-        }
+        Vector2 v;
+        v.x = Mathf.Cos(moveDir);
+        v.y = Mathf.Sin(moveDir);
+        rb.velocity = 0.9f * moveSpeed * v.normalized;
     }
 }

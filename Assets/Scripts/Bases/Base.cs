@@ -23,7 +23,7 @@ public class Base : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Electron"))
+        if (other.gameObject.CompareTag("Electron") && other.GetType() == typeof(CircleCollider2D))
         {
             Destroy(other.gameObject);
             level += electronBonus;

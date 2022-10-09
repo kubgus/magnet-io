@@ -8,9 +8,10 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField] float x;
     [SerializeField] float y;
-    [SerializeField] int spawnRate;
+    [SerializeField] int spawnDelay;
     [SerializeField] int spawnAmount;
     [SerializeField] int spawnLimit;
+    [SerializeField] int despawnDistance;
 
 
     void Start()
@@ -21,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour
     private void Update()
     {
         // Spawn every {spawnRate} seconds
-        if (Time.frameCount % spawnRate == 0)
+        if (Time.frameCount % spawnDelay == 0)
         {
             Spawn();
         }
@@ -38,7 +39,7 @@ public class ObjectSpawner : MonoBehaviour
             {
                 foreach (Transform g in world.transform)
                 {
-                    if(!g.GetComponent<Renderer>().isVisible)
+                    if(Vector2.Distance(transform.position, g.transform.position) > despawnDistance)
                     {
                         Destroy(g.gameObject);
                     }

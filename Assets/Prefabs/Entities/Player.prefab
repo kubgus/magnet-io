@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3950964925171743427}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 999
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -142,13 +142,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 7636285786560419967, guid: 485e8da244343d54d92c46e9a165f9b2, type: 3}
-  - {fileID: 7636285786560419967, guid: c57a8334b3ab19443ab52a31150dd9e9, type: 3}
-  - {fileID: 7636285786560419967, guid: 72b0c20b45e34064cbc81dbba502b13c, type: 3}
-  x: 100
-  y: 100
-  spawnRate: 1864
-  spawnAmount: 300
-  spawnLimit: 600
+  x: 70
+  y: 70
+  spawnDelay: 3000
+  spawnAmount: 100
+  spawnLimit: 500
+  despawnDistance: 50
 --- !u!114 &5919486908062272718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,14 +174,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   s: 100
-  basePrefab: {fileID: 751457757243939019, guid: 4e7f2932ab0e1b54e99bd2d8c83f48bc, type: 3}
   pBase: {fileID: 0}
-  minSize: 0.1
-  maxSize: 1
-  shrinkPerSecond: 4
+  basePrefab: {fileID: 751457757243939019, guid: 4e7f2932ab0e1b54e99bd2d8c83f48bc, type: 3}
+  minSize: 0.25
+  maxSize: 3
+  shrinkPerSecond: 2
   shrinkWithAttractMode: 12
   shrinkInEnemyBasePerSecond: 50
   growInBasePerSecond: 50
+  growInBaseSmoothSpeed: 0.05
 --- !u!114 &3438908502575452692
 MonoBehaviour:
   m_ObjectHideFlags: 0

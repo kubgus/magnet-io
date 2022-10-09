@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,15 @@ public class PlayerHealth : MonoBehaviour
     // Health
     [Range(0f, 100f)]
     public float s;
+    public Collider2D pBase;
     [SerializeField] GameObject basePrefab;
-    [SerializeField] Collider2D pBase;
     [SerializeField] float minSize;
     [SerializeField] float maxSize;
     [SerializeField] float shrinkPerSecond;
     [SerializeField] float shrinkWithAttractMode;
     [SerializeField] float shrinkInEnemyBasePerSecond;
     [SerializeField] float growInBasePerSecond;
+    [SerializeField] float growInBaseSmoothSpeed;
 
     bool inBase;
     bool inEnemyBase;
@@ -26,6 +28,9 @@ public class PlayerHealth : MonoBehaviour
     {
         mode = GetComponent<AttractMode>();
         pBase = Instantiate(basePrefab, transform.position, Quaternion.identity).GetComponent<PolygonCollider2D>();
+        pBase.transform.parent = GameObject.Find("Bases").transform;
+        Color playerColor = GetComponent<SpriteRenderer>().color;
+        pBase.GetComponent<SpriteRenderer>().color = new(playerColor.r, playerColor.g, playerColor.b, 0.7f);
     }
 
     // Update is called once per frame
@@ -39,8 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (inBase)
         {
-            s += Time.deltaTime * growInBasePerSecond * GetShrinkSpeed();
-            s = Mathf.Min(s, 100);
+            s = Mathf.Lerp(s, 100, growInBaseSmoothSpeed);
         }
         else if (inEnemyBase)
         {
@@ -71,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision == pBase)
+        if (collision.gameObject.CompareTag("Base"))
         {
             if (collision == pBase)
             {
@@ -87,10 +91,17 @@ public class PlayerHealth : MonoBehaviour
     // Determine shrink speed with attracc mode
     float GetShrinkSpeed()
     {
-        if (mode.attractMode)
+        try
         {
-            return shrinkWithAttractMode;
+            if (mode.attractMode)
+            {
+                return shrinkWithAttractMode;
+            }
+            return 1;
+        } catch
+        {
+            return 1;
         }
-        return 1;
+
     }
 }

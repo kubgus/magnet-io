@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSize: 5
   smoothPerSecond: 1
-  electronBonus: 0.05
+  electronBonus: 0.3
 --- !u!60 &751457757243939063
 PolygonCollider2D:
   m_ObjectHideFlags: 0
