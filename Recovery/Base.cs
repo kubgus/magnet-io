@@ -2,22 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemyAI : MonoBehaviour
+public class BasicEnemyBehaviour : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-=======
     [SerializeField] float speed;
     Transform randomSpot;
     Rigidbody2D rb;
-    public List<Transform> targets = new List<Transform>();
+    [SerializeField] List<Transform> targets = new List<Transform>();
     [SerializeField] float minRisk;
     [SerializeField] float maxRisk;
     [SerializeField] float minAnger;
@@ -26,6 +16,8 @@ public class BasicEnemyAI : MonoBehaviour
 
     [SerializeField] float risk;
     [SerializeField] float anger;
+
+    [SerializeField] float timeOutsideBase;
 
     bool inBase;
 
@@ -36,16 +28,18 @@ public class BasicEnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         risk = Random.Range(minRisk, maxRisk);
         anger = Random.Range(minAnger, maxAnger);
+        eBase = GetComponent<PlayerHealth>().pBase.transform;
     }
     void Update()
     {
-        if(eBase == null)
-        {
-            eBase = GetComponent<PlayerHealth>().pBase.transform;
-        }
         if(returning && GetComponent<PlayerHealth>().s >= 100)
         {
             returning = false;
+        }
+        timeOutsideBase += Time.deltaTime;
+        if (inBase)
+        {
+            timeOutsideBase = 0;
         }
         if (Vector2.Distance(transform.position, SelectTarget().position) < 1f)
         {
@@ -66,17 +60,12 @@ public class BasicEnemyAI : MonoBehaviour
       
     }
 
-    public void RandomSpot()
+    void RandomSpot()
     {
         randomSpot.position += new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), 0);
     }
     Transform SelectTarget()
     {
-        for (var i = targets.Count - 1; i > -1; i--)
-        {
-            if (targets[i] == null)
-                targets.RemoveAt(i);
-        }
         if (returning)
         {
             return eBase;
@@ -101,13 +90,24 @@ public class BasicEnemyAI : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Base") && other == GetComponent<PlayerHealth>().pBase)
         {
-            inBase = true;
+            if (other == GetComponent<PlayerHealth>().pBase)
+            {
+                inBase = true;
+            }
+            else
+            {
+                timeOutsideBase = 9999;
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
->>>>>>> Stashed changes
     {
-        
+        if (other.gameObject.CompareTag("Base") && other == GetComponent<PlayerHealth>().pBase)
+        {
+            inBase = false;
+        }
     }
 }
+
+

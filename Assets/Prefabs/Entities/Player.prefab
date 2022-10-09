@@ -146,7 +146,7 @@ MonoBehaviour:
   - {fileID: 7636285786560419967, guid: 72b0c20b45e34064cbc81dbba502b13c, type: 3}
   x: 100
   y: 100
-  spawnRate: 1864
+  spawnRate: 2000
   spawnAmount: 300
   spawnLimit: 600
 --- !u!114 &5919486908062272718
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  safeSpace: 1
 --- !u!114 &7092973021606684223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,9 +181,9 @@ MonoBehaviour:
   minSize: 0.1
   maxSize: 1
   shrinkPerSecond: 4
-  shrinkWithAttractMode: 12
-  shrinkInEnemyBasePerSecond: 50
-  growInBasePerSecond: 50
+  shrinkWithAttractMode: 16
+  shrinkInEnemyBasePerSecond: 96
+  growInBasePerSecond: 64
 --- !u!114 &3438908502575452692
 MonoBehaviour:
   m_ObjectHideFlags: 0
