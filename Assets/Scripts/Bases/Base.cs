@@ -9,7 +9,7 @@ public class Base : MonoBehaviour
     [SerializeField] float startSize = 5f;
     [SerializeField] float smoothPerSecond;
     [SerializeField] float electronBonus;
-
+    [SerializeField] GameObject particles;
     float level;
 
     private void Start()
@@ -21,6 +21,7 @@ public class Base : MonoBehaviour
     {
         if (owner == null)
         {
+            SpawnDeathParticles();
             Destroy(gameObject);
         }
 
@@ -32,8 +33,18 @@ public class Base : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Electron") && other.GetType() == typeof(CircleCollider2D))
         {
+            other.gameObject.GetComponent<ElectronController>().SpawnDeathParticles();
             Destroy(other.gameObject);
             level += electronBonus;
         }
+    }
+
+    private void SpawnDeathParticles()
+    {
+        ParticleSystem p = Instantiate(particles, transform.position,transform.rotation).GetComponent<ParticleSystem>();
+#pragma warning disable CS0618 // Type or member is obsolete
+        p.startColor = GetComponent<SpriteRenderer>().color;
+#pragma warning restore CS0618 // Type or member is obsolete
+        p.Play();
     }
 }

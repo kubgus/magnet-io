@@ -13,12 +13,18 @@ public class BasePointer : MonoBehaviour
 
     private void Start()
     {
-        target = GameObject.Find("Player").GetComponent<PlayerHealth>().pBase.transform;
-        targetPosition = target.position;
-        Color targetColor = target.GetComponent<SpriteRenderer>().color;
-        pointer.gameObject.GetComponent<Image>().color = new Color(targetColor.r, targetColor.g, targetColor.b, 0.3f);
+        try
+        {
+            target = GameObject.Find("Player").GetComponent<PlayerHealth>().pBase.transform;
+            targetPosition = target.position;
+            Color targetColor = target.GetComponent<SpriteRenderer>().color;
+            pointer.gameObject.GetComponent<Image>().color = new Color(targetColor.r, targetColor.g, targetColor.b, 0.3f);
+        }
+        catch
+        {
+            Debug.Log("stal sa vec");
+        }
     }
-
     private void Update()
     {
         Vector2 toPosition = targetPosition;

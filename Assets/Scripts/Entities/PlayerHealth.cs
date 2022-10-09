@@ -26,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float growInBaseSmoothSpeed;
 
     AttractMode mode;
+    [SerializeField] Transform particles; 
 
     private void Start()
     {
@@ -63,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (s <= 0)
         {
+            SpawnDeathParticles();
             Destroy(gameObject);
         }
     }
@@ -112,5 +114,14 @@ public class PlayerHealth : MonoBehaviour
             return 1;
         }
 
+    }
+
+    private void SpawnDeathParticles()
+    {
+        ParticleSystem p = Instantiate(particles, transform.position, transform.rotation).GetComponent<ParticleSystem>();
+#pragma warning disable CS0618 // Type or member is obsolete
+        p.startColor = GetComponent<SpriteRenderer>().color;
+#pragma warning restore CS0618 // Type or member is obsolete
+        p.Play();
     }
 }

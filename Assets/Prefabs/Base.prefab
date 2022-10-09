@@ -98,9 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e19ee0b732775243bff8834730f0d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   startSize: 5
   smoothPerSecond: 1
   electronBonus: 0.3
+  particles: {fileID: 8400296959438994153, guid: 88227b4a63ab16d40bd915c80e106e8e, type: 3}
 --- !u!60 &751457757243939063
 PolygonCollider2D:
   m_ObjectHideFlags: 0
