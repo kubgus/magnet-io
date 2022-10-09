@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2946496736707072658}
   - component: {fileID: 5577879870474512289}
   - component: {fileID: 2797275014817501791}
+  - component: {fileID: -3190491890142785159}
   m_Layer: 0
-  m_Name: TriangleParticles
+  m_Name: TriangleDeath
   m_TagString: Electron
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4812,3 +4813,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-3190491890142785159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505677184848659358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3591e45d4b33c694aa321e0a8c7d9b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

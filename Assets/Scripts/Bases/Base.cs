@@ -15,6 +15,7 @@ public class Base : MonoBehaviour
     private void Start()
     {
         level = 0;
+        SpawnDeathParticles();
     }
 
     private void Update()

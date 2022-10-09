@@ -238,6 +238,6 @@ MonoBehaviour:
   y: 100
   spawnDelay: 30000
   spawnAmount: 7
-  spawnLimit: 10
-  despawnDistance: 100
+  spawnLimit: 60
+  despawnDistance: 1000
   parent: Entities
