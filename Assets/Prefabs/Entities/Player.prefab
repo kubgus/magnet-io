@@ -110,7 +110,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 905969663
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.20784314}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.29411766}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -358,7 +358,7 @@ MonoBehaviour:
   minSize: 0
   maxSize: 2.5
   shrinkPerSecond: 2
-  shrinkWithAttractMode: 20
+  shrinkWithAttractMode: 15
   shrinkInEnemyBasePerSecond: 50
   growInBasePerSecond: 50
   growInBaseSmoothSpeed: 0.05
