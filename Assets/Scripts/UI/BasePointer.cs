@@ -38,7 +38,7 @@ public class BasePointer : MonoBehaviour
         {
             Vector2 pointerWorldPos = Camera.main.ScreenToWorldPoint(targetPosition);
             pointer.localPosition = pointerWorldPos.normalized;
-            pointer.position = (Vector2)pointer.position + new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * distance;
+            pointer.position = (Vector2)pointer.position + new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * Screen.width / distance;
         } else
         {
             pointer.position = new Vector2(-50,-50);
