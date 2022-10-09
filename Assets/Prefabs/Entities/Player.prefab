@@ -231,6 +231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 4221187547462234046, guid: 660e9a6a5b4924f488245ff5e4ad02dd, type: 3}
+  - {fileID: 4221187547462234046, guid: 660e9a6a5b4924f488245ff5e4ad02dd, type: 3}
+  - {fileID: 4221187547462234046, guid: 2d0b3571ffd2d5740ab456629f4d255c, type: 3}
   x: 190
   y: 190
   spawnDelay: 30000

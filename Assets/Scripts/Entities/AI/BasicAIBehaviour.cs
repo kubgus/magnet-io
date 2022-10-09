@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class BasicEnemyAI : MonoBehaviour
+public class BasicAIBehaviour : MonoBehaviour
 {
 
     [SerializeField] float minRisk;
