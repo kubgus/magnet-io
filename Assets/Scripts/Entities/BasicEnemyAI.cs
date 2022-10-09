@@ -53,12 +53,14 @@ public class BasicEnemyAI : MonoBehaviour
 
     Transform ChooseNewTarget()
     {
-        foreach (Transform e in wld.transform.GetChild(Random.Range(0,wld.transform.childCount)))
+        try
         {
-            if (Vector2.Distance(e.position, transform.position) > safespace * 1.5f) {
+            Transform e = wld.transform.GetChild(Random.Range(0, wld.transform.childCount));
+            if (Vector2.Distance(e.position, transform.position) > safespace * 1.5f)
+            {
                 return e;
             }
-        }
+        } catch { }
         return null;
     }
 
