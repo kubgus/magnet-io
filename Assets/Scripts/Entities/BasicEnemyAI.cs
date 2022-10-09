@@ -34,12 +34,7 @@ public class BasicEnemyAI : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (health.s < risk || Random.Range(0,risk) == 0)
-        {
-            currentTarget = health.pBase.transform;
-        }
-        
+    {   
         if (currentTarget == null)
         {
             currentTarget = ChooseNewTarget();
@@ -48,6 +43,11 @@ public class BasicEnemyAI : MonoBehaviour
         else
         {
             MoveTowardsTarget();
+        }
+
+        if (health.s < risk || Random.Range(0, risk) == 0)
+        {
+            currentTarget = health.pBase.transform;
         }
     }
 
