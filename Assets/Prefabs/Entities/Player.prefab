@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  safeSpace: 1
 --- !u!114 &7092973021606684223
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BasicEnemyAI : MonoBehaviour
 {
+
     [SerializeField] float minRisk;
     [SerializeField] float maxRisk;
     [SerializeField] float safespace = 5f;
@@ -55,7 +56,8 @@ public class BasicEnemyAI : MonoBehaviour
     {
         foreach (Transform e in wld.transform.GetChild(Random.Range(0,wld.transform.childCount)))
         {
-            if (Vector2.Distance(e.position, transform.position) > safespace * 1.5f) {
+            if (Vector2.Distance(e.position, transform.position) > safespace * 1.5f) 
+            {
                 return e;
             }
         }
