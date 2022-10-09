@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7092973021606684223}
   - component: {fileID: 3438908502575452692}
   - component: {fileID: 3950964925171743427}
+  - component: {fileID: 1727432085260764026}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -142,12 +143,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 7636285786560419967, guid: 485e8da244343d54d92c46e9a165f9b2, type: 3}
-  x: 70
-  y: 70
+  x: 100
+  y: 100
   spawnDelay: 3000
   spawnAmount: 100
   spawnLimit: 500
   despawnDistance: 50
+  parent: World
 --- !u!114 &5919486908062272718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f78b1acb42f4cc438cd4389cbb2d1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed: 8
   safeSpace: 1
 --- !u!114 &7092973021606684223
 MonoBehaviour:
@@ -176,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: 100
   pBase: {fileID: 0}
+  inBase: 0
+  inEnemyBase: 0
   basePrefab: {fileID: 751457757243939019, guid: 4e7f2932ab0e1b54e99bd2d8c83f48bc, type: 3}
   minSize: 0.25
   maxSize: 3
@@ -213,3 +217,24 @@ MonoBehaviour:
   attractMode: 0
   profile: {fileID: 11400000, guid: a0cacff8394522843a22865bd3afdd62, type: 2}
   smoothSpeed: 0.1
+--- !u!114 &1727432085260764026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712448583540666245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5419a6e0750e4f418aaffb2078c957e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 4221187547462234046, guid: 660e9a6a5b4924f488245ff5e4ad02dd, type: 3}
+  x: 190
+  y: 190
+  spawnDelay: 30000
+  spawnAmount: 7
+  spawnLimit: 10
+  despawnDistance: 100
+  parent: Entities

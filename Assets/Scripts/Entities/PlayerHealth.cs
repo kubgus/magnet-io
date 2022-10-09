@@ -10,6 +10,12 @@ public class PlayerHealth : MonoBehaviour
     [Range(0f, 100f)]
     public float s;
     public Collider2D pBase;
+
+    // For enemyAI
+    public bool inBase;
+    public bool inEnemyBase;
+
+
     [SerializeField] GameObject basePrefab;
     [SerializeField] float minSize;
     [SerializeField] float maxSize;
@@ -18,9 +24,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float shrinkInEnemyBasePerSecond;
     [SerializeField] float growInBasePerSecond;
     [SerializeField] float growInBaseSmoothSpeed;
-
-    bool inBase;
-    bool inEnemyBase;
 
     AttractMode mode;
 
@@ -31,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         pBase.transform.parent = GameObject.Find("Bases").transform;
         Color playerColor = GetComponent<SpriteRenderer>().color;
         pBase.GetComponent<SpriteRenderer>().color = new(playerColor.r, playerColor.g, playerColor.b, 0.7f);
+        pBase.GetComponent<Base>().owner = transform;
     }
 
     // Update is called once per frame
@@ -55,6 +59,11 @@ public class PlayerHealth : MonoBehaviour
         {
             s -= Time.deltaTime * shrinkPerSecond * GetShrinkSpeed();
             s = Mathf.Max(s, 0);
+        }
+
+        if (s <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
+    public Transform owner;
+
     [SerializeField] float startSize = 5f;
     [SerializeField] float smoothPerSecond;
     [SerializeField] float electronBonus;
@@ -17,6 +19,11 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
+        if (owner == null)
+        {
+            Destroy(gameObject);
+        }
+
         float trueScale = Mathf.Lerp(transform.localScale.x, level + startSize, Time.deltaTime * smoothPerSecond);
         transform.localScale = new Vector2(trueScale, trueScale);
     }

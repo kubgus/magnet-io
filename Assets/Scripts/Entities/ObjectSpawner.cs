@@ -12,7 +12,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] int spawnAmount;
     [SerializeField] int spawnLimit;
     [SerializeField] int despawnDistance;
-
+    [SerializeField] string parent = "World";
+ 
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class ObjectSpawner : MonoBehaviour
         Debug.Log("Spawned some Electrons");
         for (int i = 0; i < spawnAmount;i++)
         {
-            GameObject world = GameObject.Find("World");
+            GameObject world = GameObject.Find(parent);
 
             if (world.transform.childCount > spawnLimit)
             {

@@ -12,10 +12,11 @@ public class BasicEnemyAI : MonoBehaviour
 
     [SerializeField] Transform currentTarget;
 
-    float risk;
+    [SerializeField] float risk;
 
     float moveSpeed;
     float moveDir;
+    float baseDist;
 
     Rigidbody2D rb;
     GameObject wld;
@@ -35,7 +36,15 @@ public class BasicEnemyAI : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
+        baseDist = Vector2.Distance(transform.position, health.pBase.transform.position);
+
+        if (GetComponent<PlayerHealth>().inEnemyBase)
+        {
+            currentTarget = null;
+            moveDir -= 3.14f;
+        }
+
         if (currentTarget == null)
         {
             currentTarget = ChooseNewTarget();
@@ -46,7 +55,7 @@ public class BasicEnemyAI : MonoBehaviour
             MoveTowardsTarget();
         }
 
-        if (health.s < risk || Random.Range(0, risk) == 0)
+        if (health.s - baseDist < risk)
         {
             currentTarget = health.pBase.transform;
         }
@@ -57,7 +66,8 @@ public class BasicEnemyAI : MonoBehaviour
         try
         {
             Transform e = wld.transform.GetChild(Random.Range(0, wld.transform.childCount));
-            if (Vector2.Distance(e.position, transform.position) > safespace * 1.5f)
+            float d = Vector2.Distance(e.position, transform.position);
+            if (d > safespace || d < risk)
             {
                 return e;
             }

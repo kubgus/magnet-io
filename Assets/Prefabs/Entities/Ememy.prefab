@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d4be1ce536c4247bbc17c94f0d1563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRisk: 1
-  maxRisk: 5
+  minRisk: 30
+  maxRisk: 55
   safespace: 3
   currentTarget: {fileID: 0}
+  risk: 0
 --- !u!114 &4309698204046062892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: 100
   pBase: {fileID: 0}
+  inBase: 0
+  inEnemyBase: 0
   basePrefab: {fileID: 751457757243939019, guid: 4e7f2932ab0e1b54e99bd2d8c83f48bc, type: 3}
   minSize: 0.25
   maxSize: 3
