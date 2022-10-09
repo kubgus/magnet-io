@@ -164,6 +164,7 @@ MonoBehaviour:
   shrinkInEnemyBasePerSecond: 50
   growInBasePerSecond: 50
   growInBaseSmoothSpeed: 0.075
+  particles: {fileID: 6589698641333513189, guid: bcace5268d40a614182f43386ad6c29d, type: 3}
 --- !u!114 &-3575992291188365593
 MonoBehaviour:
   m_ObjectHideFlags: 0

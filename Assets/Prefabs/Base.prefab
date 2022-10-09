@@ -103,6 +103,7 @@ MonoBehaviour:
   startSize: 0.3
   smoothPerSecond: 1
   electronBonus: 0.01
+  particles: {fileID: 8400296959438994153, guid: 88227b4a63ab16d40bd915c80e106e8e, type: 3}
 --- !u!60 &7084248197206607494
 PolygonCollider2D:
   m_ObjectHideFlags: 0
