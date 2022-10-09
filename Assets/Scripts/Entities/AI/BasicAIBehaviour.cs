@@ -24,20 +24,29 @@ public class BasicAIBehaviour : MonoBehaviour
 
     private void Start()
     {
+        health = GetComponent<PlayerHealth>();
+
         risk = Random.Range(minRisk, maxRisk);
         
         moveSpeed = FindObjectOfType<PlayerController>().speed;
 
+
         rb = GetComponent<Rigidbody2D>();
         wld = GameObject.Find("World");
-        health = GetComponent<PlayerHealth>();
 
         currentTarget = ChooseNewTarget();
     }
 
     private void Update()
     {
-        baseDist = Vector2.Distance(transform.position, health.pBase.transform.position);
+        if (health != null)
+        {
+            baseDist = Vector2.Distance(transform.position, health.pBase.transform.position);
+        }
+        else
+        {
+            baseDist = 0;
+        }
 
         if (GetComponent<PlayerHealth>().inEnemyBase)
         {

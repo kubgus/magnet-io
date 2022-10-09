@@ -23,11 +23,16 @@ public class ElectronController : MonoBehaviour
     public float instability;
 
     [SerializeField] List<GameObject> nearbyPlayers;
-    [SerializeField] Transform particles;
+    [SerializeField] Transform deathParticles;
+    [SerializeField] Transform spawnParticles;
+    bool spawnedSpawnParticles;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
+        if (!spawnedSpawnParticles)
+        {
+            SpawnSpawnParticles();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,9 +51,18 @@ public class ElectronController : MonoBehaviour
         }
     }
 
+    public void SpawnSpawnParticles()
+    {
+        spawnedSpawnParticles = true;
+        ParticleSystem p = Instantiate(spawnParticles, transform.position, transform.rotation).GetComponent<ParticleSystem>();
+#pragma warning disable CS0618 // Type or member is obsolete
+        p.startColor = GetComponent<SpriteRenderer>().color;
+#pragma warning restore CS0618 // Type or member is obsolete
+        p.Play();
+    }
     public void SpawnDeathParticles()
     {
-        ParticleSystem p = Instantiate(particles, transform.position, transform.rotation).GetComponent<ParticleSystem>();
+        ParticleSystem p = Instantiate(deathParticles, transform.position, transform.rotation).GetComponent<ParticleSystem>();
 #pragma warning disable CS0618 // Type or member is obsolete
         p.startColor = GetComponent<SpriteRenderer>().color;
 #pragma warning restore CS0618 // Type or member is obsolete

@@ -27,6 +27,10 @@ public class BasePointer : MonoBehaviour
     }
     private void Update()
     {
+        if(!GameObject.Find("Player"))
+        {
+            Destroy(gameObject);
+        }
         Vector2 toPosition = targetPosition;
         Vector2 fromPosition = Camera.main.transform.position;
         float angle = (float)Mathf.Atan2(toPosition.y - fromPosition.y, toPosition.x - fromPosition.x) * Mathf.Rad2Deg;
@@ -43,5 +47,6 @@ public class BasePointer : MonoBehaviour
         {
             pointer.position = new Vector2(-50,-50);
         }
+
     }
 }

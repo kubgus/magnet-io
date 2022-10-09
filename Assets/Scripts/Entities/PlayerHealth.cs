@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float growInBaseSmoothSpeed;
 
     AttractMode mode;
-    [SerializeField] Transform particles; 
+    [SerializeField] Transform particles;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         Color playerColor = GetComponent<SpriteRenderer>().color;
         pBase.GetComponent<SpriteRenderer>().color = new(playerColor.r, playerColor.g, playerColor.b, 0.7f);
         pBase.GetComponent<Base>().owner = transform;
+
     }
 
     // Update is called once per frame
@@ -65,10 +67,14 @@ public class PlayerHealth : MonoBehaviour
         if (s <= 0)
         {
             SpawnDeathParticles();
+            //O 5 SEKUND TO INVOKNE FUNKCIU ABY TO NACITALO MAIN MENU
+            if (gameObject.name == "Player")
+            {
+                FindObjectOfType<MainMenu>().LoadMenu(3f);
+            }
             Destroy(gameObject);
         }
     }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Base"))
