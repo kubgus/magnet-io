@@ -24,7 +24,7 @@ public class AttractMode : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             attractMode = true;
             ab.intensity.value = Mathf.Lerp(ab.intensity.value, 1, smoothSpeed);

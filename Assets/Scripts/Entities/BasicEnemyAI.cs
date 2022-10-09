@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BasicEnemyAI : MonoBehaviour
 {
+
     [SerializeField] float minRisk;
     [SerializeField] float maxRisk;
     [SerializeField] float safespace = 5f;
