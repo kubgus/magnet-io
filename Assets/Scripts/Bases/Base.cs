@@ -10,6 +10,8 @@ public class Base : MonoBehaviour
     [SerializeField] float smoothPerSecond;
     [SerializeField] float electronBonus;
     [SerializeField] GameObject particles;
+    [SerializeField] AudioSource pickup;
+    [SerializeField] float audioDistance;
     float level;
 
     private void Start()
@@ -35,6 +37,13 @@ public class Base : MonoBehaviour
         if (other.gameObject.CompareTag("Electron") && other.GetType() == typeof(CircleCollider2D))
         {
             other.gameObject.GetComponent<ElectronController>().SpawnDeathParticles();
+            try
+            {
+                if (Vector2.Distance(GameObject.Find("Player").transform.position, other.transform.position) < audioDistance)
+                {
+                    pickup.Play();
+                }
+            } catch { }
             Destroy(other.gameObject);
             level += electronBonus;
         }

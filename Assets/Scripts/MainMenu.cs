@@ -42,4 +42,15 @@ public class MainMenu : MonoBehaviour
         //TU SA LOADNE MAIN MENU
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void LoadOptionsMenu()
+    {
+        PlayerPrefs.SetString("username", input.text);
+        SceneManager.LoadScene("Options");
+    }
 }

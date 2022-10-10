@@ -28,6 +28,8 @@ public class PlayerHealth : MonoBehaviour
 
     AttractMode mode;
     [SerializeField] Transform particles;
+    [SerializeField] AudioSource death;
+    [SerializeField] float audioDistance;
 
     private void Start()
     {
@@ -67,6 +69,14 @@ public class PlayerHealth : MonoBehaviour
         if (s <= 0)
         {
             SpawnDeathParticles();
+            try
+            {
+                if (Vector2.Distance(GameObject.Find("Player").transform.position, transform.position) < audioDistance)
+                {
+                    GameObject.Find("DeathSounds").GetComponent<DeathSounds>().Die();
+                }
+            }
+            catch { }
             //O 5 SEKUND TO INVOKNE FUNKCIU ABY TO NACITALO MAIN MENU
             if (gameObject.name == "Player")
             {
