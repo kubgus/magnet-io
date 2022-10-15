@@ -1,5 +1,7 @@
+
 <div align="center">
 
+[![](https://img.shields.io/badge/%233-Jame%20Gam%20IO-purple)](https://itch.io/jam/jame-gam-io)
 ![image](https://user-images.githubusercontent.com/53797257/195993077-d6fc315d-f8b7-451a-9f07-7a9e25b1a36b.png)
 
  [PLAY](https://laiq.itch.io/magnet-io)  -  [RATE](https://itch.io/jam/jame-gam-io/rate/1741519)
@@ -7,6 +9,14 @@
  </div>
   
   <br><br>
+  
+# Notes
+- **The code is very bad** (c'mon, it's a game jam)
+- Version of unity: **2021.3.1f1**
+  
+  <br> <br>
+  
+# Description  
   
 <p>Magnet.io is a fun&nbsp;unique endless .IO game. You can collect points with your magnetic abilities and transport them into your base without anyone stealing it from you. You also lose size when you are out in the wild, so you need to time everything well.</p>
 <p><strong></strong></p>
